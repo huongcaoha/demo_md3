@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="zxx" xmlns:th="http://www.thymeleaf.org">
+
+<!-- Mirrored from pixelfit.tailorfit.site/html/pesco/shops.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 17 Oct 2024 09:12:46 GMT -->
+<head>
+    <th:block th:replace="user/layout/layout :: head">
+
+    </th:block>
+</head>
+<body>
+
+
+<!--====== Main Bg  ======-->
+<main class="main-bg">
+    <th:block th:replace="user/layout/layout :: header">
+
+    </th:block>
+    <!--====== Start Page Banner Section ======-->
+    <section class="page-banner">
+        <div class="page-banner-wrapper p-r z-1">
+            <svg class="lineanm"viewBox="0 0 1920 347" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path class="line" d="M-39 345.187C70 308.353 397.628 293.477 436 145.186C490 -63.5 572 -57.8156 688 255.186C757.071 441.559 989.5 -121.315 1389 98.6856C1708.6 274.686 1940.33 156.519 1964.5 98.6856" stroke="white" stroke-width="3" stroke-dasharray="2 2"/>
+            </svg>
+            <div class="page-image"><img th:src="@{assets2/user/images/bg/page-img-1.png}" alt="image"></div>
+            <div class="page-svg"><img th:src="@{assets2/user/images/bg/page-shape.png}" alt="Shape"></div>
+            <div class="shape shape-one"><span></span></div>
+            <div class="shape shape-two"><span></span></div>
+            <div class="shape shape-three"><span><img th:src="@{assets2/user/images/shape/curved-arrow.png}" alt=""></span></div>
+            <div class="shape shape-four"><span><img th:src="@{assets2/user/images/shape/stars.png}" alt=""></span></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="page-banner-content">
+                            <h1>Shop Page</h1>
+                            <ul class="breadcrumb-link">
+                                <li><a href="index-2.html">Home</a></li>
+                                <li><i class="far fa-long-arrow-right"></i></li>
+                                <li class="active">Shop</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!--====== End Page Banner Section ======-->
+    <!--====== Start Shop page Section ======-->
+    <section class="shop-page-section pt-120 pb-80">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-3">
+                    <!--=== Sidebar Area ===-->
+                    <div class="shop-sidebar-area">
+                        <!--=== Product Widget ===-->
+                        <div class="product-widget product-categories-widget mb-40">
+                            <div class="widget-content">
+                                <h4 class="widget-title">Product Categories</h4>
+                                <ul class="categories-list">
+                                    <li>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check1">
+                                            <label class="form-check-label" for="check1">
+                                                Women's Clothing<span>45</span>
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check2">
+                                            <label class="form-check-label" for="check2">
+                                                Men's Clothing<span>40</span>
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check3">
+                                            <label class="form-check-label" for="check3">
+                                                Formal Wear<span>35</span>
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check4">
+                                            <label class="form-check-label" for="check4">
+                                                Footwear<span>59</span>
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox"  id="check5">
+                                            <label class="form-check-label" for="check5">
+                                                Accessories<span>74</span>
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check6">
+                                            <label class="form-check-label" for="check6">
+                                                Maternity Wear<span>87</span>
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check7">
+                                            <label class="form-check-label" for="check7">
+                                                Vintage Clothing<span>45</span>
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check8">
+                                            <label class="form-check-label" for="check8">
+                                                Streetwear<span>88</span>
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check9">
+                                            <label class="form-check-label" for="check9">
+                                                Swimwear<span>19</span>
+                                            </label>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--=== Sidebar Widget ===-->
+                        <div class="product-widget price-filter-widget mb-40 wow fadeInUp">
+                            <div class="widget-content">
+                                <h4 class="widget-title">Price Filter</h4>
+                                <div class="price-number">
+                                    <ul>
+                                        <li><input type="text" id="amount"></li>
+                                    </ul>
+                                </div>
+                                <div id="slider-range"></div>
+                            </div>
+                        </div>
+                        <!--=== Sidebar Widget ===-->
+                        <div class="product-widget product-categories-widget mb-40">
+                            <div class="widget-content">
+                                <h4 class="widget-title">Brands</h4>
+                                <ul class="categories-list">
+                                    <li>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="br_check1">
+                                            <label class="form-check-label" for="br_check1">
+                                                Nike<span>19</span>
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="br_check2">
+                                            <label class="form-check-label" for="br_check2">
+                                                Zara<span>55</span>
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="br_check3">
+                                            <label class="form-check-label" for="br_check3">
+                                                Denim<span>74</span>
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="br_check4">
+                                            <label class="form-check-label" for="br_check4">
+                                                Madame<span>12</span>
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox"  id="br_check5">
+                                            <label class="form-check-label" for="br_check5">
+                                                Max Mall<span>45</span>
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="br_check6">
+                                            <label class="form-check-label" for="br_check6">
+                                                BAGGIE<span>45</span>
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="br_check7">
+                                            <label class="form-check-label" for="br_check7">
+                                                Kolam<span>74</span>
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="br_check8">
+                                            <label class="form-check-label" for="br_check8">
+                                                Sketcen<span>19</span>
+                                            </label>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--=== Sidebar Widget ===-->
+                        <div class="product-widget product-size-widget mb-30">
+                            <div class="widget-content">
+                                <h4 class="widget-title">Size</h4>
+                                <ul class="size-list">
+                                    <li>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="radio" value="Slim Fit" id="size1">
+                                            <label class="form-check-label" for="size1">
+                                                Slim Fit
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="radio" value="Slim Fit" id="size2">
+                                            <label class="form-check-label" for="size2">
+                                                S
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="radio" value="Slim Fit" id="size3">
+                                            <label class="form-check-label" for="size3">
+                                                M
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="radio" value="Slim Fit" id="size4">
+                                            <label class="form-check-label" for="size4">
+                                                L
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="radio" value="Slim Fit" id="size5">
+                                            <label class="form-check-label" for="size5">
+                                                XL
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="radio" value="Slim Fit" id="size6">
+                                            <label class="form-check-label" for="size6">
+                                                2XL
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="radio" value="Slim Fit" id="size7">
+                                            <label class="form-check-label" for="size7">
+                                                XXL
+                                            </label>
+                                        </div>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <!--=== Sidebar Widget ===-->
+                        <div class="sidebar-banner-widget mb-40">
+                            <div class="banner-widget-content">
+                                <div class="banner-shape"><img th:src="@{assets2/user/images/widget/banner-shape-1.png}" alt="shape"></div>
+                                <div class="banner-img"><img th:src="@{assets2/user/images/widget/banner-1.png}" alt="image"></div>
+                                <div class="content">
+                                    <span class="sale">BIG SALE</span>
+                                    <h3>40% <span>off Each Products</span></h3>
+                                    <a href="shops.html" class="theme-btn style-one">Shop Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-9">
+                    <!--=== Shop Page Wrapper ===-->
+                    <div class="shop-page-wrapper">
+                        <!--=== Shop Filter ===-->
+                        <div class="shop-filter mb-60">
+                            <div class="row align-items-center">
+                                <div class="col-sm-5 col-12">
+                                    <div class="show-text">
+                                        <p><span>Showing</span>01-16 of 66 Results</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2 col-4">
+                                    <div class="filter-grid-list text-center">
+                                        <a href="#"><i class="far fa-th"></i></a>
+                                        <a href="#"><i class="far fa-list"></i></a>
+                                    </div>
+                                </div>
+                                <div class="col-sm-5 col-8">
+                                    <div class="filter-product-category d-flex align-items-center">
+                                        <h5>Sort By:</h5>
+                                        <select class="wide">
+                                            <option>Default</option>
+                                            <option>Sort by Newness</option>
+                                            <option>Price High To Low</option>
+                                            <option>Price Low To High</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-4 col-md-6 col-sm-12">
+                                <!--=== Product Item  ===-->
+                                <div class="product-item style-one mb-40" th:each="p :${products} ">
+                                    <div class="product-thumbnail" >
+                                        <img th:src="@{'/uploads/'+${p.image}}" alt="Products">
+                                        <div class="discount">10% Off</div>
+
+                                        <div class="cart-button">
+                                            <a th:href="@{'/product-detail/'+${p.id}}" class="cart-btn"><i class="far fa-shopping-basket"></i> <span class="text">Show Product</span></a>
+                                        </div>
+                                    </div>
+                                    <div class="product-info-wrap">
+                                        <div class="product-info">
+                                            <ul class="ratings rating5">
+                                                <li><i class="fas fa-star"></i></li>
+                                                <li><i class="fas fa-star"></i></li>
+                                                <li><i class="fas fa-star"></i></li>
+                                                <li><i class="fas fa-star"></i></li>
+                                                <li><i class="fas fa-star"></i></li>
+                                                <li><a href="#">(65)</a></li>
+                                            </ul>
+                                            <h4 class="title"><a href="shop-details.html" th:text="${p.description}"></a></h4>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="pesco-pagination mb-40">
+                                    <ul>
+                                        <li><a href="#"><i class="far fa-angle-left"></i></a></li>
+                                        <li><a href="#">01</a></li>
+                                        <li><a href="#">02</a></li>
+                                        <li><a href="#">....</a></li>
+                                        <li><a href="#">20</a></li>
+                                        <li><a href="#"><i class="far fa-angle-right"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!--====== End Shop page Section ======-->
+    <!--====== Start Newsletter Sections  ======-->
+    <section class="newsletter-section pb-95">
+        <div class="container">
+            <!--=== Newsletter Wrapper  ===-->
+            <div class="newsletter-wrapper white-bg p-r z-1">
+                <div class="newsletter-shape pattern-one"><span><img th:src="@{assets2/user/images/newsletter/pattern-1.png}" alt="Pattern Shape"></span></div>
+                <div class="newsletter-shape pattern-two"><span><img th:src="@{assets2/user/images/newsletter/pattern-2.png}" alt="Pattern Shape"></span></div>
+                <div class="newsletter-shape shape-one"><span><img th:src="@{assets2/user/images/newsletter/shape-1.png}" alt="Shape"></span></div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="newsletter-content-box">
+                            <span class="sub-text">Our Newsletter</span>
+                            <h3>Get weekly update. Sign up and get up to <span>20% off</span> your first purchase</h3>
+                            <form>
+                                <div class="form-group">
+                                    <input type="email" class="form_control" placeholder="Write your Email Address" name="email">
+                                    <button class="theme-btn style-one">Subscribe</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="newsletter-image">
+                            <img th:src="@{assets2/user/images/newsletter/newsletter-1.png}" alt="Image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!--====== End Newsletter Sections  ======-->
+
+    <th:block th:replace="user/layout/layout :: footer">
+
+    </th:block>
+</main>
+<th:block th:replace="user/layout/layout :: script">
+
+</th:block>
+</body>
+
+<!-- Mirrored from pixelfit.tailorfit.site/html/pesco/shops.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 17 Oct 2024 09:12:48 GMT -->
+</html>

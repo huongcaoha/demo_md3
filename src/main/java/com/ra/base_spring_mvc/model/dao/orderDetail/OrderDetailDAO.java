@@ -1,0 +1,15 @@
+package com.ra.base_spring_mvc.model.dao.orderDetail;
+
+import com.ra.base_spring_mvc.model.entity.Order;
+import com.ra.base_spring_mvc.model.entity.OrderDetail;
+import com.ra.base_spring_mvc.model.entity.ShoppingCart;
+
+import java.util.List;
+
+public interface OrderDetailDAO {
+    List<OrderDetail> getListByOrder(int user_id ,int order_id);
+    boolean addOrderDetail(List<ShoppingCart> shoppingCarts,Order order);
+    boolean updateOrderDetail(OrderDetail orderDetail);
+    boolean deleteOrderDetail(OrderDetail orderDetail);
+    OrderDetail findById(int order_detail_id);
+}

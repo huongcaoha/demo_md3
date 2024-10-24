@@ -1,0 +1,100 @@
+<!doctype html>
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org">
+
+
+<!-- Mirrored from htmldemo.net/adomx/light/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 16 Oct 2024 01:51:57 GMT -->
+<head th:replace="/admin/layout/layout :: head">
+
+
+</head>
+
+<body>
+
+<div class="main-wrapper">
+    <th:block th:replace="/admin/layout/layout ::header-section ">
+
+    </th:block>
+    <th:block th:replace="/admin/layout/layout ::header ">
+
+    </th:block>
+
+
+    <!-- Content Body Start -->
+    <div class="container" style="margin-top: 150px">
+        <a class="btn btn-primary" href="/banner/add">Add New Banner</a>
+        <div class="col-md-1-12" style="margin-top: 20px">
+            <h5 th:if="${error != null}" th:text="${error}" class="text-danger text-center"></h5>
+            <table class="table table-striped table-inverse table-responsive" style="margin: 0 auto">
+                <thead class="thead-inverse">
+                <tr>
+                    <th>STT</th>
+                    <th>Banner Name</th>
+                    <th>Location</th>
+                    <th>Image</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="banner,loop : ${banners}">
+                    <td scope="row" th:text="${loop.count}"></td>
+                    <td th:text="${banner.bannerName}"></td>
+                    <td th:text="${banner.location}"></td>
+                    <td><img th:src="@{'/uploads/' + ${banner.image}}" th:alt="${banner.bannerName}" style="width: 100px ; height: 50px" ></td>
+                    <td>
+                        <a class="btn btn-warning" th:href="@{'/banner/edit/' + ${banner.id}}">Edit</a>
+                        <a class="btn btn-danger" th:href="@{'/banner/delete/' + ${banner.id}}">Delete</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <nav aria-label="Page navigation" style="margin-top: 30px">
+                <ul class="pagination">
+                    <li class="page-item" th:classappend="${page <= 1 ? 'disabled' : ''}">
+                        <a class="page-link" th:href="${page > 1 ? '/banner?page=' + (page - 1) : '#'}" aria-label="Previous"
+                           th:attr="aria-disabled=${page <= 1 ? 'true' : 'false'}"
+                           th:classappend="${page <= 1 ? 'disabled' : ''}">
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                    </li>
+
+                    <li class="page-item" th:each="i : ${#numbers.sequence(1,totalPage)}" th:classappend="${page == i ? 'active' : ''}">
+                        <a class="page-link" th:href="@{'/banner?page=' + ${i}}" th:text="${i}"></a>
+                    </li>
+
+                    <li class="page-item" th:classappend="${page >= totalPage ? 'disabled' : ''}">
+                        <a class="page-link" th:href="${page < totalPage ? '/banner?page=' + (page + 1) : '#'}"
+                           th:attr="aria-disabled=${page >= totalPage ? 'true' : 'false'}"
+                           th:classappend="${page >= totalPage ? 'disabled' : ''}"
+                           aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </li>
+
+
+                </ul>
+            </nav>
+<<<<<<< HEAD
+=======
+
+>>>>>>> b3fc89ae957013758c6fc607fb903f8ef0aada5c
+        </div>
+    </div>
+
+    <!-- Content Body End -->
+
+    <th:block th:replace="/admin/layout/layout ::footer ">
+
+    </th:block>
+
+</div>
+
+<th:block th:replace="/admin/layout/layout ::script ">
+
+</th:block>
+</body>
+
+
+<!-- Mirrored from htmldemo.net/adomx/light/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 16 Oct 2024 01:52:32 GMT -->
+</html>

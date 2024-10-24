@@ -1,0 +1,177 @@
+<!doctype html>
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org">
+
+
+<!-- Mirrored from htmldemo.net/adomx/light/table-footable.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 16 Oct 2024 01:54:41 GMT -->
+<head th:replace="/admin/layout/layout :: head">
+
+<style>
+  .table>:not(caption)>*>* {
+    padding: .5rem .5rem;
+    background-color: var(--bs-table-bg);
+    padding-left: 100px;
+    border-bottom-width: 1px;
+    box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg)
+  }
+</style>
+</head>
+<body>
+
+<div class="main-wrapper">
+
+  <th:block th:replace="/admin/layout/layout ::header-section ">
+
+  </th:block>
+  <th:block th:replace="/admin/layout/layout ::header ">
+
+  </th:block>
+  <!-- Content Body Start -->
+  <div class="content-body">
+
+    <!-- Page Headings Start -->
+    <div class="row justify-content-between align-items-center mb-10">
+
+      <!-- Page Heading Start -->
+      <div class="col-12 col-lg-auto mb-20">
+        <div class="page-heading">
+          <h3 class="title">Category Management </h3>
+        </div>
+      </div><!-- Page Heading End -->
+    </div><!-- Page Headings End -->
+
+    <div class="row">
+
+      <!--Edit Rows Start-->
+      <div class="col-12 mb-30">
+        <div class="box">
+          <!-- Side Header Toggle & Search Start -->
+          <div class="col-auto">
+            <div class="row align-items-center">
+
+
+              <!--Header Search-->
+              <div class="col-auto">
+
+                <a class="btn btn-danger" th:href="@{/admin/category/add}">Add</a>
+
+                <div class="header-search">
+
+                  <button class="header-search-open d-block d-xl-none"><i class="zmdi zmdi-search"></i></button>
+
+                  <div class="header-search-form">
+                    <form action="#">
+                      <input type="text" placeholder="Search Here">
+                      <button><i class="zmdi zmdi-search"></i></button>
+                    </form>
+                    <button class="header-search-close d-block d-xl-none"><i class="zmdi zmdi-close"></i></button>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+          </div><!-- Side Header Toggle & Search End -->
+          <div class="box-body">
+
+            <table class="table footable-editing" data-paging="true" data-filtering="true" data-sorting="true" data-breakpoints='{ "xs": 480, "sm": 768, "md": 992, "lg": 1200, "xl": 1400 }'>
+              <thead>
+              <tr>
+                <th >STT</th>
+                <th data-name="name">Name</th>
+                <th data-name="position">Description</th>
+                <th data-breakpoints="xs" data-name="office">Image</th>
+                <th data-breakpoints="xs" data-name="age">Status</th>
+                <th colspan="2" >Action</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr th:each="c,loot : ${categories}">
+                <td th:text="${loot.count}"></td>
+                <td th:text="${c.categoryName}"></td>
+                <td th:text="${c.description}"></td>
+                <td ><img th:src="'/uploads/'+${c.image}" width="50px" height="50px"></td>
+                <td th:text="${c.status ? 'Active':'Inactive'}"></td>
+                <td>
+
+                  <a class="btn btn-warning" th:href="@{'/admin/category/edit/'+${c.id}}">Edit</a>
+                  <a class="btn btn-danger" th:href="@{'/admin/category/delete/'+${c.id}}">Delete</a>
+
+                </td>
+              </tr>
+
+              </tbody>
+            </table>
+
+            <div class="modal fade" id="footable-editor-modal">
+              <div class="modal-dialog" role="document">
+                <form class="modal-content form-horizontal" id="footable-editor">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="footable-editor-title">Add Row</h4>
+                  </div>
+                  <div class="modal-body">
+                    <div class="form-group required">
+                      <label for="name" class="col-sm-3 control-label">Name</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+                      </div>
+                    </div>
+                    <div class="form-group required">
+                      <label for="position" class="col-sm-3 control-label">Position</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control" id="position" name="position" placeholder="Position">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="office" class="col-sm-3 control-label">Office</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control" id="office" name="office" placeholder="Office">
+                      </div>
+                    </div>
+                    <div class="form-group required">
+                      <label for="age" class="col-sm-3 control-label">age</label>
+                      <div class="col-sm-9">
+                        <input type="date" class="form-control" id="age" name="age">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="startDate" class="col-sm-3 control-label">Start Date</label>
+                      <div class="col-sm-9">
+                        <input type="date" class="form-control" id="startDate" name="startDate">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="salary" class="col-sm-3 control-label">Salary</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control" id="salary" name="salary" placeholder="Salary">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="submit" class="button button-primary">Save changes</button>
+                    <button type="button" class="button button-default" data-dismiss="modal">Cancel</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+  </div><!-- Content Body End -->
+
+  <th:block th:replace="/admin/layout/layout ::footer ">
+
+  </th:block>
+
+</div>
+<th:block th:replace="/admin/layout/layout :: script"></th:block>
+</body>
+
+
+<!-- Mirrored from htmldemo.net/adomx/light/table-footable.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 16 Oct 2024 01:54:42 GMT -->
+</html>

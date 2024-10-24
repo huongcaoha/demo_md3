@@ -1,0 +1,84 @@
+
+<!doctype html>
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org">
+
+
+<!-- Mirrored from htmldemo.net/adomx/light/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 16 Oct 2024 01:51:57 GMT -->
+<head th:replace="/admin/layout/layout :: head">
+
+
+</head>
+
+<body>
+
+<div class="main-wrapper">
+    <th:block th:replace="/admin/layout/layout ::header-section ">
+
+    </th:block>
+    <th:block th:replace="/admin/layout/layout ::header ">
+
+    </th:block>
+
+
+    <!-- Content Body Start -->
+    <div class="container" style="margin-top: 150px">
+        <h1 class="text-center text-success">Update Voucher</h1>
+        <h5 th:if="${error != null}" th:text="${error}" class="text-danger text-center"></h5>
+        <form action="" method="post" th:object="${voucher}" style="width: 500px ; height: 500px ; margin: 20px 400px">
+            <div class="form-group">
+                <label>Code voucher</label>
+                <input type="text" class="form-control" th:field="*{code}">
+            </div>
+
+            <div class="form-group">
+                <label>Persent</label>
+                <input type="number" class="form-control" th:field="*{persent}">
+            </div>
+
+            <div class="form-group">
+                <label>Min Amount</label>
+                <input type="number" class="form-control" th:field="*{min_amount}">
+            </div>
+
+            <div class="form-group">
+                <label>Quantity</label>
+                <input type="number" class="form-control" th:field="*{quantity}">
+            </div>
+
+            <div class="form-group">
+                <label>Description</label>
+                <input type="text" class="form-control" th:field="*{description}">
+            </div>
+
+            <div class="form-group">
+                <label>Start Date</label>
+                <input type="date" class="form-control" th:field="*{start_date}">
+            </div>
+
+            <div class="form-group">
+                <label>End Date</label>
+                <input type="date" class="form-control" th:field="*{end_date}">
+            </div>
+
+            <input type="submit" name="Update" class="btn btn-primary text-center">
+        </form>
+
+        <a href="/voucher" class="btn btn-primary" style="margin-top: 50px">Back Voucher</a>
+    </div>
+
+    <!-- Content Body End -->
+
+    <th:block th:replace="/admin/layout/layout ::footer ">
+
+    </th:block>
+
+</div>
+
+<th:block th:replace="/admin/layout/layout ::script ">
+
+</th:block>
+</body>
+
+
+<!-- Mirrored from htmldemo.net/adomx/light/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 16 Oct 2024 01:52:32 GMT -->
+</html>

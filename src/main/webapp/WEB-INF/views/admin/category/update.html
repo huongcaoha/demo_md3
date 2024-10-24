@@ -1,0 +1,105 @@
+<!doctype html>
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org">
+
+
+<head th:replace="/admin/layout/layout :: head">
+
+
+</head>
+<body>
+
+<div class="main-wrapper">
+
+    <th:block th:replace="/admin/layout/layout ::header-section ">
+
+    </th:block>
+    <th:block th:replace="/admin/layout/layout ::header ">
+
+    </th:block>
+    <!-- Content Body Start -->
+    <div class="content-body">
+
+        <!-- Page Headings Start -->
+        <div class="row justify-content-between align-items-center mb-10">
+
+            <!-- Page Heading Start -->
+            <div class="col-12 col-lg-auto mb-20">
+                <div class="page-heading">
+                    <h3>Form <span>/ Layout</span></h3>
+                </div>
+            </div><!-- Page Heading End -->
+
+        </div><!-- Page Headings End -->
+
+        <div class="row mbn-30">
+            <!--Form With Advance Form Elements Start-->
+            <div class="col-lg-6 col-12 mb-30">
+                <div class="box">
+                    <div class="box-head">
+                        <h4 class="title">Form With Advance Form Elements</h4>
+                    </div>
+                    <div class="box-body">
+                        <form th:object="${category}" method="post" action="" enctype="multipart/form-data">
+                            <div class="row mbn-20">
+
+                                <div class="col-12 mb-20">
+                                    <label for="formLayoutUsername4">Category Name</label>
+                                    <input type="text" id="formLayoutUsername4" class="form-control" placeholder="Category Name" th:field="*{categoryName}">
+                                </div>
+                                <div class="col-12 mb-20">
+                                    <label for="formLayoutEmail4">Description</label>
+                                    <input type="text" id="formLayoutEmail4" class="form-control" placeholder="Description" th:field="*{description}">
+                                </div>
+
+                                <div class="col-12 mb-20">
+                                    <label for="formLayoutFile2">Upload a File</label>
+                                    <input type="file" id="formLayoutFile2" class="dropify" name="fileImageCategory">
+                                </div>
+
+                                <div class="col-12 mb-20">
+                                    <div class="adomx-checkbox-radio-group inline">
+                                        <label class="adomx-radio"><input name="advanceRadio" type="radio" value="1" th:field="*{status}"><i class="icon"></i>Active</label>
+                                        <label class="adomx-radio"><input name="advanceRadio" type="radio" value="0" th:field="*{status}"><i class="icon"></i>Inactive</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 mb-20">
+                                    <input type="submit" value="submit" class="button button-primary">
+
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!--Form With Advance Form Elements End-->
+        </div>
+    </div><!-- Content Body End -->
+
+    <th:block th:replace="/admin/layout/layout ::footer ">
+
+    </th:block>
+
+</div>
+<!-- Global Vendor, plugins & Activation JS -->
+<script th:src="@{assets/admin/js/vendor/modernizr-3.6.0.min.js}"></script>
+<script th:src="@{assets/admin/js/vendor/jquery-3.3.1.min.js}"></script>
+<script th:src="@{assets/admin/js/vendor/popper.min.js}"></script>
+<script th:src="@{assets/admin/js/vendor/bootstrap.min.js}"></script>
+<!--Plugins JS-->
+<script th:src="@{assets/admin/js/plugins/perfect-scrollbar.min.js}"></script>
+<script th:src="@{assets/admin/js/plugins/tippy4.min.js.js}"></script>
+<!--Main JS-->
+<script th:src="@{assets/admin/js/main.js}"></script>
+
+<!-- Plugins & Activation JS For Only This Page -->
+<script th:src="@{assets/admin/js/plugins/select2/select2.full.min.js}"></script>
+<script th:src="@{assets/admin/js/plugins/select2/select2.active.js}"></script>
+<script th:src="@{assets/admin/js/plugins/dropify/dropify.min.js}"></script>
+<script th:src="@{assets/admin/js/plugins/dropify/dropify.active.js}"></script>
+</body>
+
+
+<!-- Mirrored from htmldemo.net/adomx/light/form-layout.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 16 Oct 2024 01:54:38 GMT -->
+</html>
