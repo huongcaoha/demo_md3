@@ -94,7 +94,7 @@
             <td th:text="${order.receive_name}"></td>
             <td th:text="${order.receive_address}"></td>
             <td th:text="${order.receive_phone}"></td>
-            <td th:text="${order.total_price}"></td>
+            <td th:text="${order.total_price} + ' $'"></td>
             <td th:text="${order.status}"></td>
             <td th:text="${order.created_at}"></td>
             <td th:if="${order.status == T(com.ra.base_spring_mvc.model.entity.constant.StatusEnum).WAITING}">

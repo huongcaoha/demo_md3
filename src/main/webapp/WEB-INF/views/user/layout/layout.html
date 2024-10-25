@@ -34,6 +34,56 @@
     <!--====== Style css ======-->
     <link rel="stylesheet" th:href="@{/assets2/user/css/style.css}">
 
+<!--    css ADmin-->
+    <link rel="stylesheet" th:href="@{/assets/admin/css/vendor/bootstrap.min.css}">
+
+    <!-- Icon Font CSS -->
+    <link rel="stylesheet" th:href="@{/assets/admin/css/vendor/material-design-iconic-font.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/admin/css/vendor/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/admin/css/vendor/themify-icons.css}">
+    <link rel="stylesheet" th:href="@{/assets/admin/css/vendor/cryptocurrency-icons.css}">
+
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" th:href="@{/assets/admin/css/plugins/plugins.css}">
+
+    <!-- Helper CSS -->
+    <link rel="stylesheet" th:href="@{/assets/admin/css/helper.css}">
+
+    <!-- Main Style CSS -->
+    <link rel="stylesheet" th:href="@{/assets/admin/css/style.css}">
+
+    <!-- Custom Style CSS Only For Demo Purpose -->
+    <link id="cus-style" rel="stylesheet" th:href="@{/assets/admin/css/style-primary.css}">
+
+    <script  th:src="@{/assets/admin/js/vendor/modernizr-3.6.0.min.js}"></script>
+    <script  th:src="@{/assets/admin/js/vendor/jquery-3.3.1.min.js}"></script>
+    <script  th:src="@{/assets/admin/js/vendor/popper.min.js}"></script>
+    <script  th:src="@{/assets/admin/js/vendor/bootstrap.min.js}"></script>
+    <!--Plugins JS-->
+    <script  th:src="@{/assets/admin/js/plugins/perfect-scrollbar.min.js}"></script>
+    <script  th:src="@{/assets/admin/js/plugins/tippy4.min.js.js}"></script>
+    <!--Main JS-->
+    <script  th:src="@{/assets/admin/js/main.js}"></script>
+
+    <!-- Plugins & Activation JS For Only This Page -->
+
+    <!--Moment-->
+    <script  th:src="@{/assets/admin/js/plugins/moment/moment.min.js}"></script>
+
+    <!--Daterange Picker-->
+    <script  th:src="@{/assets/admin/js/plugins/daterangepicker/daterangepicker.js}"></script>
+    <script  th:src="@{/assets/admin/js/plugins/daterangepicker/daterangepicker.active.js}"></script>
+
+    <!--Echarts-->
+    <script  th:src="@{/assets/admin/js/plugins/chartjs/Chart.min.js}"></script>
+    <script  th:src="@{/assets/admin/js/plugins/chartjs/chartjs.active.js}"></script>
+
+    <!--VMap-->
+    <script  th:src="@{/assets/admin/js/plugins/vmap/jquery.vmap.min.js}"></script>
+    <script  th:src="@{/assets/admin/js/plugins/vmap/maps/jquery.vmap.world.js}"></script>
+    <script  th:src="@{/assets/admin/js/plugins/vmap/maps/samples/jquery.vmap.sampledata.js}"></script>
+    <script  th:src="@{/assets/admin/js/plugins/vmap/vmap.active.js}"></script>
+
 </head>
 <body>
 <th:block th:fragment="sidemenu">
@@ -318,7 +368,7 @@
                                             </ul>
                                         </li>
                                         <li class="menu-item"><a href="contact.html">Contact</a></li>
-                                        <li class="menu-item"><a href="/userVoucher">Voucher</a></li>
+
                                     </ul>
                                 </nav>
                             </div>
@@ -328,7 +378,39 @@
                     <div class="nav-right-item style-one">
                         <ul>
                             <li>
-                                <div class="deals d-lg-block d-none"><i class="far fa-fire-alt"></i>Deal</div>
+                                <div class="deals d-lg-block d-none">
+                                    <i class="far fa-fire-alt"></i>
+                                   <a href="/userVoucher">Voucher</a>
+                                </div>
+
+                            </li>
+                            <li class="adomx-dropdown col-auto">
+                                <a class="toggle" href="#"><i class="zmdi zmdi-notifications"></i><span class="badge"></span></a>
+
+                                <!-- Dropdown -->
+                                <div class="adomx-dropdown-menu dropdown-menu-notifications">
+                                    <div class="head">
+                                        <h5 class="title" th:text="'You have ' + ${session.countNewNotification} + ' new notification.'"></h5>
+                                    </div>
+                                    <div class="body custom-scroll ps ps--active-y">
+                                        <ul style="display: block">
+                                            <li th:each="notification : ${session.notifications}">
+                                                <a th:href="@{'/notification/'+${notification.id}}">
+                                                    <i class="zmdi zmdi-notifications-active"></i>
+                                                    <p th:text="${notification.content}"></p>
+                                                    <span th:text="${notification.created_at.toString()}"></span>
+                                                    <div>
+                                                        <span th:if="${notification.status == true}" th:text="new" style="color: red"></span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        <div class="ps__rail-x" style="left: 0px; bottom: 3px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; height: 275px; right: 3px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 133px;"></div></div></div>
+                                    <div class="footer">
+                                        <a href="#" class="view-all">view all</a>
+                                    </div>
+                                </div>
+
                             </li>
                             <li>
                                 <div class="wishlist-btn d-lg-block d-none"><i class="far fa-heart"></i><span class="pro-count">12</span></div>
@@ -343,6 +425,7 @@
                                     </div>
                                 </div>
                             </li>
+
                         </ul>
                         <div class="navbar-toggler d-block d-lg-none">
                             <span></span>

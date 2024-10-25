@@ -103,7 +103,12 @@ public class CheckoutController {
             order.setReceive_phone(orderDto.getReceive_phone());
             order.setUser(user);
             order.setVoucher(voucher);
-            order.setTotal_price(totalMoney - (totalMoney * voucher.getPersent() ) / 100);
+            if(voucher != null){
+                order.setTotal_price(totalMoney - (totalMoney * voucher.getPersent() ) / 100);
+            }else {
+                order.setTotal_price(totalMoney);
+            }
+
             Order newOrder = orderService.addOrder(order) ;
             if(newOrder != null){
                 boolean rs = orderDetailService.addOrderDetail(shoppingCarts,newOrder);

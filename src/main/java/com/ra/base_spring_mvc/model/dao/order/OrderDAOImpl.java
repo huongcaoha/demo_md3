@@ -1,9 +1,11 @@
 package com.ra.base_spring_mvc.model.dao.order;
 
+import com.ra.base_spring_mvc.model.entity.Notification;
 import com.ra.base_spring_mvc.model.entity.Order;
 import com.ra.base_spring_mvc.model.entity.OrderDetail;
 import com.ra.base_spring_mvc.model.entity.ShoppingCart;
 import com.ra.base_spring_mvc.model.entity.constant.StatusEnum;
+import com.ra.base_spring_mvc.model.service.notification.NotificationService;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +18,13 @@ import java.util.List;
 public class OrderDAOImpl implements OrderDAO{
     @Autowired
     private final SessionFactory sessionFactory;
+    @Autowired
+    private final NotificationService notificationService;
 
 
-    public OrderDAOImpl(SessionFactory sessionFactory) {
+    public OrderDAOImpl(SessionFactory sessionFactory, NotificationService notificationService) {
         this.sessionFactory = sessionFactory;
+        this.notificationService = notificationService;
     }
 
 
@@ -81,23 +86,31 @@ public class OrderDAOImpl implements OrderDAO{
     @Override
     public boolean updateStatus(int order_id) {
         Order order = findById(order_id);
+        String status = null;
         switch (order.getStatus()){
             case WAITING:{
                 order.setStatus(StatusEnum.CONFIRM);
+                status = "Confirm" ;
                 break;
             }
             case CONFIRM:{
                 order.setStatus(StatusEnum.DELIVERY);
+                status = "Delivery" ;
                 break;
             }
             case DELIVERY:{
                 order.setStatus(StatusEnum.SUCCESS);
+                status = "Success" ;
                 break;
             }
             case SUCCESS:{
                 break;
             }
         }
+        Notification notification = new Notification();
+        notification.setUser(order.getUser());
+        notification.setContent("Order code " + order.getSerial_number() +" has had its status updated to: " + status);
+        notificationService.addNotification(notification);
         return updateOrder(order);
     }
 
@@ -121,6 +134,10 @@ public class OrderDAOImpl implements OrderDAO{
     @Override
     public boolean cancelOrder(Order order) {
         order.setStatus(StatusEnum.CANCEL);
+        Notification notification = new Notification();
+        notification.setUser(order.getUser());
+        notification.setContent("Order code " + order.getSerial_number() +" has had its status updated to: Cancel");
+        notificationService.addNotification(notification);
         return updateOrder(order);
     }
 

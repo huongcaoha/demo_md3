@@ -1,9 +1,11 @@
 package com.ra.base_spring_mvc.controller.admin;
 
+import com.ra.base_spring_mvc.model.entity.Notification;
 import com.ra.base_spring_mvc.model.entity.Order;
 import com.ra.base_spring_mvc.model.entity.OrderDetail;
 import com.ra.base_spring_mvc.model.entity.constant.StatusEnum;
 import com.ra.base_spring_mvc.model.entity.dto.OrderSearch;
+import com.ra.base_spring_mvc.model.service.notification.NotificationService;
 import com.ra.base_spring_mvc.model.service.order.OrderService;
 import com.ra.base_spring_mvc.model.service.orderDetail.OrderDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,10 +29,13 @@ public class AdminOrderController {
     private final OrderService orderService;
     @Autowired
     private final OrderDetailService orderDetailService ;
+    @Autowired
+    private final NotificationService notificationService;
 
-    public AdminOrderController(OrderService orderService, OrderDetailService orderDetailService) {
+    public AdminOrderController(OrderService orderService, OrderDetailService orderDetailService, NotificationService notificationService, NotificationService notificationService1) {
         this.orderService = orderService;
         this.orderDetailService = orderDetailService;
+        this.notificationService = notificationService1;
     }
 
     @GetMapping
@@ -85,6 +90,18 @@ public class AdminOrderController {
     @GetMapping("/updateStatus/{id}")
     public String updateStatus(@PathVariable int id){
         orderService.updateStatus(id);
+        return "redirect:/order";
+    }
+
+    @GetMapping("/denied/{id}")
+    public String deniedOrder(@PathVariable int id){
+        Order order = orderService.findById(id);
+        order.setStatus(DENIED);
+        orderService.updateOrder(order);
+        Notification notification = new Notification();
+        notification.setUser(order.getUser());
+        notification.setContent("Order code " + order.getSerial_number() +" has had its status updated to: Denied");
+        notificationService.addNotification(notification);
         return "redirect:/order";
     }
 
