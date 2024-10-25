@@ -12,4 +12,6 @@ public interface OrderDAO {
     Order findById(int order_id);
     boolean updateStatus(int order_id);
     boolean updateOrder(Order order);
+    boolean cancelOrder(Order order);
+    List<Order> getListPagination(int page , int size);
 }

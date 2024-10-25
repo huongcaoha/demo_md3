@@ -42,4 +42,14 @@ public class OrderDetailServiceImpl implements OrderDetailService{
     public OrderDetail findById(int order_detail_id) {
         return orderDetailDAO.findById(order_detail_id);
     }
+
+    @Override
+    public List<OrderDetail> getAll() {
+        return orderDetailDAO.getAll();
+    }
+
+    @Override
+    public List<OrderDetail> getListByOrderId(int order_id) {
+        return orderDetailDAO.getListByOrderId(order_id);
+    }
 }

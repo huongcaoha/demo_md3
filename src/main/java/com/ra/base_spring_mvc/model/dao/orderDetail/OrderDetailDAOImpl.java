@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 public class OrderDetailDAOImpl implements OrderDetailDAO {
@@ -109,5 +110,21 @@ public class OrderDetailDAOImpl implements OrderDetailDAO {
             e.printStackTrace();
         }
         return null ;
+    }
+
+    @Override
+    public List<OrderDetail> getAll() {
+        List<OrderDetail> orderDetails = new ArrayList<>();
+       try (Session session = sessionFactory.openSession()){
+          orderDetails = session.createQuery("from OrderDetail ", OrderDetail.class).list();
+       }catch (Exception e){
+           e.printStackTrace();
+       }
+       return orderDetails;
+    }
+
+    @Override
+    public List<OrderDetail> getListByOrderId(int order_id) {
+        return getAll().stream().filter(orderDetail -> orderDetail.getOrder().getId() == order_id).collect(Collectors.toList());
     }
 }

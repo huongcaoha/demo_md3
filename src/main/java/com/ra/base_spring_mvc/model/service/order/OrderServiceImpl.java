@@ -48,4 +48,14 @@ public class OrderServiceImpl implements OrderService {
         return orderDAO.updateOrder(order);
     }
 
+    @Override
+    public boolean cancelOrder(Order order) {
+        return orderDAO.cancelOrder(order);
+    }
+
+    @Override
+    public List<Order> getListPagination(int page, int size) {
+        return orderDAO.getListPagination(page,size);
+    }
+
 }

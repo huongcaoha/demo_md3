@@ -27,7 +27,7 @@ public class OrderDAOImpl implements OrderDAO{
     public List<Order> getListOrder() {
         List<Order> orders = new ArrayList<>();
         try (Session session = sessionFactory.openSession()){
-            session.createQuery("from Order ", Order.class).list();
+           orders = session.createQuery("from Order ", Order.class).list();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -116,6 +116,25 @@ public class OrderDAOImpl implements OrderDAO{
         }finally {
             session.close();
         }
+    }
+
+    @Override
+    public boolean cancelOrder(Order order) {
+        order.setStatus(StatusEnum.CANCEL);
+        return updateOrder(order);
+    }
+
+    @Override
+    public List<Order> getListPagination(int page, int size) {
+        List<Order> orders = new ArrayList<>();
+        try (Session session = sessionFactory.openSession()){
+            orders = session.createQuery("from Order", Order.class)
+                    .setFirstResult((page - 1) * size)
+                    .setMaxResults(size).list();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return orders;
     }
 
 }

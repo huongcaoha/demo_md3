@@ -12,4 +12,6 @@ public interface OrderDetailDAO {
     boolean updateOrderDetail(OrderDetail orderDetail);
     boolean deleteOrderDetail(OrderDetail orderDetail);
     OrderDetail findById(int order_detail_id);
+    List<OrderDetail> getAll();
+    List<OrderDetail> getListByOrderId(int order_id);
 }
