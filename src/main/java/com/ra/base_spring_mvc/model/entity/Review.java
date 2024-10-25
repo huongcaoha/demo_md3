@@ -27,7 +27,7 @@ public class Review {
 
     @ManyToOne
     @JoinColumn(name = "product_id" , referencedColumnName = "id")
-    private Product product ;
+    private ProductDetail productDetail ;
 
     private int rate ;
 

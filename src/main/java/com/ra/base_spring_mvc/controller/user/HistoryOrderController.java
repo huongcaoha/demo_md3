@@ -1,17 +1,15 @@
 package com.ra.base_spring_mvc.controller.user;
 
-import com.ra.base_spring_mvc.model.entity.Order;
-import com.ra.base_spring_mvc.model.entity.OrderDetail;
-import com.ra.base_spring_mvc.model.entity.User;
+import com.ra.base_spring_mvc.model.entity.*;
 import com.ra.base_spring_mvc.model.service.order.OrderService;
 import com.ra.base_spring_mvc.model.service.orderDetail.OrderDetailService;
+import com.ra.base_spring_mvc.model.service.productdetail.ProductDetailService;
+import com.ra.base_spring_mvc.model.service.review.ReviewService;
 import com.ra.base_spring_mvc.model.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,11 +24,17 @@ public class HistoryOrderController {
     private final UserService userService;
     @Autowired
     private final OrderDetailService orderDetailService;
+    @Autowired
+    private final ReviewService reviewService;
+    @Autowired
+    private final ProductDetailService productDetailService;
 
-    public HistoryOrderController(OrderService orderService, UserService userService, OrderDetailService orderDetailService) {
+    public HistoryOrderController(OrderService orderService, UserService userService, OrderDetailService orderDetailService, ReviewService reviewService, ProductDetailService productDetailService) {
         this.orderService = orderService;
         this.userService = userService;
         this.orderDetailService = orderDetailService;
+        this.reviewService = reviewService;
+        this.productDetailService = productDetailService;
     }
 
     @GetMapping
@@ -68,6 +72,27 @@ public class HistoryOrderController {
         }
         List<OrderDetail> orderDetails = orderDetailService.getListByOrder(user.getId(),id_order);
         model.addAttribute("orderDetails",orderDetails);
+        model.addAttribute("review", new Review());
+        model.addAttribute("order_id",id_order);
         return "user/profile/orderDetail" ;
+    }
+
+    @PostMapping("/review")
+    public String review(@ModelAttribute("review") Review review , HttpServletRequest request,
+                         @RequestParam("orderDetail_id") int orderDetail_id ,
+                         @RequestParam("user_id") int user_id,
+                         @RequestParam("order_id") int order_id){
+        User user = userService.findById(user_id);
+        OrderDetail orderDetail = orderDetailService.findById(orderDetail_id);
+        review.setUser(user);
+        review.setProductDetail(orderDetail.getProductDetail());
+        if(reviewService.addReview(review)){
+            request.getSession().setAttribute("rsAddReview",true);
+        }else {
+            request.getSession().setAttribute("rsAddReview",false);
+        }
+        orderDetail.setReview(false);
+        orderDetailService.updateOrderDetail(orderDetail);
+        return "redirect:/historyOrder/viewDetail/" + order_id;
     }
 }

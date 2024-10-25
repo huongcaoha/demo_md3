@@ -81,6 +81,7 @@
             <th>Price</th>
             <th>Quantity</th>
             <th>Into Money</th>
+            <th></th>
 
 
         </tr>
@@ -93,8 +94,60 @@
             <td th:text="${orderDetail.productDetail.unit_price + '$'}"></td>
             <td th:text="${orderDetail.quantity}"></td>
             <td th:text="${orderDetail.quantity * orderDetail.productDetail.unit_price + '$'}"></td>
+            <td th:if="${orderDetail.review == true}">
+                <button class="btn btn-primary" th:onclick="'openReview()'">Review</button>
+<!--                <a th:onclick="'openReview()'" class="btn btn-primary" th:href="@{'/historyOrder/review/'+ ${orderDetail.id}}" th:text="Review"></a>-->
+                <div class="modal" tabindex="-1" role="dialog" id="form-review" style="margin-top: 300px">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <form action="/historyOrder/review" method="post" th:object="${review}">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Review Product</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" th:onclick="'closeReview()'">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <input type="hidden" th:value="${orderDetail.id}" name="orderDetail_id">
+                                    <input type="hidden" th:value="${orderDetail.order.user.id}" name="user_id">
+                                    <input type="hidden" th:value="${order_id}" name="order_id">
+                                    <div class="form-group">
+                                        <label>Description</label>
+                                        <input type="text" class="form-control" th:field="*{content}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Quality</label>
+                                        <select class="form-control" th:field="*{rate}">
+                                            <option value="5">5 star</option>
+                                            <option value="4">4 star</option>
+                                            <option value="3">3 star</option>
+                                            <option value="2">2 star</option>
+                                            <option value="1">1 star</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <input type="submit" class="btn btn-warning" value="Send">
+                                    <button th:onclick="'closeReview()'" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </td>
         </tr>
         </tbody>
+       <div th:if="${session.rsAddReview == true}" >
+           <script>
+               alert("send review success !")
+           </script>
+       </div>
+        <div th:if="${session.rsAddReview == false}" >
+            <script>
+                alert("send review error !")
+            </script>
+        </div>
     </table>
     <a href="/historyOrder" class="btn btn-success">Go Back</a>
 </div>
@@ -108,6 +161,15 @@
 
 </th:block>
 </body>
+<script>
+    let modal = document.getElementById("form-review");
+    function openReview(){
+            modal.style.display = "block";
+    }
+    function  closeReview(){
+        modal.style.display = "none";
+    }
+</script>
 
 <!-- Mirrored from pixelfit.tailorfit.site/html/pesco/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 17 Oct 2024 09:12:33 GMT -->
 </html>
