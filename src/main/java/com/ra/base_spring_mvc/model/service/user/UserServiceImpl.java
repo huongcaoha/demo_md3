@@ -47,5 +47,15 @@ public class UserServiceImpl implements UserService{
         return users.stream().map(User::getPhone).anyMatch(phone -> phone.equals(_phone));
     }
 
+    @Override
+    public boolean register(User user) {
+        return userDAO.register(user);
+    }
+
+    @Override
+    public User login(User user) {
+        return  userDAO.login(user);
+    }
+
 
 }

@@ -52,6 +52,20 @@ public class OrderDAOImpl implements OrderDAO{
     }
 
     @Override
+    public List<Order> getListByUserPagination(int user_id,int page , int size) {
+        List<Order> orders = new ArrayList<>();
+        try (Session session = sessionFactory.openSession()){
+            orders = session.createQuery("from Order o where o.user.id = :id", Order.class)
+                    .setParameter("id",user_id)
+                    .setFirstResult((page - 1 ) * size)
+                    .setMaxResults(size).list();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return orders;
+    }
+
+    @Override
     public Order addOrder(Order order) {
         Session session = sessionFactory.openSession();
         try {

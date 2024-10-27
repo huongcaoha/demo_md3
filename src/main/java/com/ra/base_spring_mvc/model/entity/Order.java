@@ -32,7 +32,7 @@ public class Order {
 
     private StatusEnum status = StatusEnum.WAITING ;
     private String note ;
-
+    private int payMethod ;
     @ManyToOne
     @JoinColumn(name = "voucher_id" , referencedColumnName = "id")
     private Voucher voucher;

@@ -29,7 +29,7 @@ public class Review {
     @JoinColumn(name = "product_id" , referencedColumnName = "id")
     private ProductDetail productDetail ;
 
-    private int rate ;
+    private int rate = 5;
 
     private String content ;
 

@@ -1,14 +1,20 @@
 package com.ra.base_spring_mvc.model.dao.user;
 
+import com.ra.base_spring_mvc.model.constants.RoleName;
+import com.ra.base_spring_mvc.model.entity.Role;
 import com.ra.base_spring_mvc.model.entity.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 @Repository
 public class UserDAOImpl implements UserDAO{
     @Autowired
@@ -84,5 +90,72 @@ public class UserDAOImpl implements UserDAO{
             e.printStackTrace();
         }
         return null ;
+    }
+
+
+    @Override
+    public boolean register(User user)
+    {
+        Set<Role> roles = new HashSet<>();
+
+        roles.add(findByRoleName(RoleName.USER));
+        
+        user.setStatus(true);
+        user.setRoles(roles);
+        user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
+        Transaction tx = null;
+        try (Session session = sessionFactory.openSession())
+        {
+            tx = session.beginTransaction();
+            session.save(user);
+            tx.commit();
+        }
+        catch (Exception e)
+        {
+            if (tx != null)
+            {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
+        }
+        return false;
+    }
+
+    private Role findByRoleName(RoleName roleName)
+    {
+        try (Session session = sessionFactory.openSession())
+        {
+            return session.createQuery("from Role r where r.roleName = :_roleName", Role.class)
+                    .setParameter("_roleName", roleName)
+                    .getSingleResult();
+        }
+        catch (Exception e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public User login(User user)
+    {
+        try (Session session = sessionFactory.openSession())
+        {
+            User userLogin = session.createQuery("from User u where u.username = :_username", User.class)
+                    .setParameter("_username", user.getUsername())
+                    .getSingleResult();
+            if (userLogin != null)
+            {
+                // kiem tra password
+//                if(BCrypt.checkpw(user.getPassword(), userLogin.getPassword())) {
+//                    return userLogin;
+//                }
+                return userLogin;
+            }
+            return null;
+        }
+        catch (Exception e)
+        {
+            throw new RuntimeException(e);
+        }
     }
 }

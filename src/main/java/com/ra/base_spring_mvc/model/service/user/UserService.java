@@ -12,4 +12,6 @@ public interface UserService {
     User findById(int id);
     boolean checkUsernameExist(String username);
     boolean checkPhoneExist(String phone);
+    boolean register(User user);
+    User login(User user);
 }

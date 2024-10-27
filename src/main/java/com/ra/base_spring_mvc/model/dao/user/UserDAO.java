@@ -10,4 +10,7 @@ public interface UserDAO {
     boolean updateUser(User user);
     boolean deleteUser(User user);
     User findById(int id);
+    boolean register(User user);
+    User login(User user);
+
 }

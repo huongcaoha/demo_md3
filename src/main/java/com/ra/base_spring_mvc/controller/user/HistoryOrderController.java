@@ -38,15 +38,21 @@ public class HistoryOrderController {
     }
 
     @GetMapping
-    public String history(Model model, HttpServletRequest request){
+    public String history(Model model, HttpServletRequest request,
+                          @RequestParam(value = "page",defaultValue = "1") int page,
+                          @RequestParam(value = "size",defaultValue = "5") int size){
         User user = new User();
         if(request.getSession().getAttribute("user") != null){
             user = (User) request.getSession().getAttribute("user");
         }else {
             user = userService.findById(1);
         }
-        List<Order> orders = orderService.getListByUser(user.getId());
+        List<Order> orders = orderService.getListByUserPagination(user.getId(),page,size);
+        double totalPage = Math.ceil((double) orders.size() / size);
         model.addAttribute("orders",orders);
+        model.addAttribute("page",page);
+        model.addAttribute("size",size);
+        model.addAttribute("totalPage",totalPage);
         return "user/profile/historyOrder";
     }
 

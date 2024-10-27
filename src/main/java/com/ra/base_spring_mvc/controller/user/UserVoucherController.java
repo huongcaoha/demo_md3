@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/userVoucher")
@@ -35,6 +37,8 @@ public class UserVoucherController {
             user = userService.findById(1);
         }
         List<Voucher> vouchers = voucherService.getListVoucher();
+        vouchers = vouchers.stream().filter(voucher -> !voucher.getStart_date().after(new Date()) &&
+                !voucher.getEnd_date().before(new Date())).collect(Collectors.toList());
         List<VoucherDtoDisplay> voucherDtoDisplays = voucherService.converseDtoToVoucher(vouchers, user.getId());
         model.addAttribute("vouchers",voucherDtoDisplays);
         return "user/getVoucher";

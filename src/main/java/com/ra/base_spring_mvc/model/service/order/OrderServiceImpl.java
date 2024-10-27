@@ -29,6 +29,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public List<Order> getListByUserPagination(int user_id, int page, int size) {
+        return orderDAO.getListByUserPagination(user_id,page,size);
+    }
+
+    @Override
     public Order addOrder(Order order) {
         return orderDAO.addOrder(order);
     }

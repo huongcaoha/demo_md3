@@ -19,4 +19,5 @@ public class OrderDto {
     @NotBlank
     private String receive_phone;
     private String note ;
+    private int payMethod = 1 ;
 }

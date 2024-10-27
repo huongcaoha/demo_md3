@@ -71,7 +71,10 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <th><i class="fas fa-tshirt"></i>Products Details</th>
+                    <th><i class="fas fa-user-edit"></i>Image</th>
+                    <th><i class="fas fa-tshirt"></i>Products Name</th>
+                    <th>Color</th>
+                    <th>Size</th>
                     <th><i class="fas fa-sack-dollar"></i>Price</th>
                     <th style="text-align: center;"><i class="fas fa-eye"></i>Quantity</th>
                     <th style="text-align: right;"><i class="fas fa-money-bill"></i>Total</th>
@@ -80,19 +83,11 @@
                 <tbody>
                 <tr th:each="shoppingCart ,loop : ${shoppingCarts}">
                     <td>
-                        <div class="product-thumb-item">
-                            <div class="product-img">
-                                <img th:src="@{'/uploads/' + ${shoppingCart.productDetail.image}}" alt="Product Thumbnail">
-                            </div>
-                            <div class="product-info">
-                                <h4 class="title"><a href="shop-details.html" th:text="${shoppingCart.productDetail.product.productName}"></a></h4>
-                                <div class="product-meta">
-                                    <span th:text="${shoppingCart.productDetail.color}"></span>
-                                    <span th:text="${shoppingCart.productDetail.size}"></span>
-                                </div>
-                            </div>
-                        </div>
+                        <img th:src="@{'/uploads/' + ${shoppingCart.productDetail.image}}" alt="Product Thumbnail" style="width: 50px ; height: 50px">
                     </td>
+                    <td th:text="${shoppingCart.productDetail.product.productName}"></td>
+                    <td th:text="${shoppingCart.productDetail.color.colorName}"></td>
+                    <td th:text="${shoppingCart.productDetail.size.sizeName}"></td>
                     <td>
                         <div class="price" th:text="${shoppingCart.productDetail.unit_price}"><span class="currrency">$</span></div>
                     </td>
@@ -121,7 +116,7 @@
         </div>
         <div class="cart-bottom d-flex align-items-center justify-content-between mt-40">
             <div class="ct-shopping">
-                <button class="theme-btn style-one"><a href="/checkout">Continue Shopping</a></button>
+                <button class="theme-btn style-one"><a href="/checkout">Check Out</a></button>
             </div>
             <div class="cl-cart">
                 <a href="/cart/deleteAll" class="theme-btn style-one">Clear Cart</a>

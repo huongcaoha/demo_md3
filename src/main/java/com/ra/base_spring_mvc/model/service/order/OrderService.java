@@ -8,6 +8,7 @@ import java.util.List;
 public interface OrderService {
     List<Order> getListOrder();
     List<Order> getListByUser(int user_id);
+    List<Order> getListByUserPagination(int user_id,int page , int size);
     Order addOrder(Order order);
     Order findById(int order_id);
     boolean updateStatus(int order_id);

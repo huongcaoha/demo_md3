@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
@@ -76,7 +77,8 @@ public class CheckoutController {
 
     @PostMapping
     public String payment(@ModelAttribute("order") OrderDto orderDto , HttpServletRequest request ,
-                          @RequestParam("voucher_id") int voucher_id){
+                          @RequestParam("voucher_id") int voucher_id,
+                          RedirectAttributes redirectAttributes){
         User user = new User();
         if(request.getSession().getAttribute("user") != null){
             user = (User) request.getSession().getAttribute("user");
@@ -103,6 +105,7 @@ public class CheckoutController {
             order.setReceive_phone(orderDto.getReceive_phone());
             order.setUser(user);
             order.setVoucher(voucher);
+            order.setPayMethod(orderDto.getPayMethod());
             if(voucher != null){
                 order.setTotal_price(totalMoney - (totalMoney * voucher.getPersent() ) / 100);
             }else {
@@ -125,14 +128,18 @@ public class CheckoutController {
                         voucherUserService.updateVoucherUser(voucherUser);
                     }
                     shoppingCartService.deleteAll(user.getId());
+                    redirectAttributes.addFlashAttribute("statusCheckout",true);
                     return "redirect:/";
                 }else {
+                    redirectAttributes.addFlashAttribute("statusCheckout",false);
                     return "redirect:/checkout";
                 }
             }else {
+                redirectAttributes.addFlashAttribute("statusCheckout",false);
                 return "redirect:/checkout";
             }
         }else {
+            redirectAttributes.addFlashAttribute("statusCheckout",false);
             return "redirect:/checkout";
         }
 
