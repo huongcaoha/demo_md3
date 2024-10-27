@@ -33,7 +33,7 @@ public class Comment {
 
     @ManyToOne
     @JoinColumn(name = "product_id",referencedColumnName = "id")
-    private Product product;
+    private ProductDetail productDetail;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date created_at = new Date();

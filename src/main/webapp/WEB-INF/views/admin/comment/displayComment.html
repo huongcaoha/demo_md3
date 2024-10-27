@@ -23,6 +23,28 @@
     <div class="container" style="margin-top: 150px">
         <div class="col-md-1-12" style="margin-top: 20px">
             <h1 class="text-success text-center">List Comment</h1>
+            <form action="" method="post" style="display: flex ; justify-content: end ; gap: 20px ; margin-bottom: 50px ; margin-top: 30px" th:object="${commentSearch}">
+                <div class="form-group">
+                    <label>
+                        <input  type="text" class="form-control" th:field="*{productName}"  placeholder="search name product">
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <select class="form-control" th:field="*{status}">
+                            <option value="">Status</option>
+                            <option value=true>approve</option>
+                            <option value=false>not approve</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input  type="date" class="form-control" th:field="*{created_at}">
+                    </label>
+                </div>
+                <input type="submit" value="Search" class="btn btn-success">
+            </form>
             <table class="table table-striped table-inverse table-responsive" style="margin: 0 auto">
                 <thead class="thead-inverse">
                 <tr>
@@ -31,7 +53,7 @@
                     <th>Username</th>
                     <th>Content</th>
                     <th>Status</th>
-                    <th>ProductId</th>
+                    <th>Product Name</th>
                     <th>Created Date</th>
                     <th>Action</th>
                 </tr>
@@ -39,11 +61,11 @@
                 <tbody>
                 <tr th:each="comment,loop : ${comments}">
                     <td scope="row" th:text="${((page -1 )* size ) + loop.count}"></td>
-                    <td><img th:src="@{'/uploads/' + ${comment.user.image}}" alt="image" style="width: 50px ; height: 50px" ></td>
+                    <td><img th:src="@{'/uploads/' + ${comment.user.avatar}}" alt="image" style="width: 50px ; height: 50px" ></td>
                     <td th:text="${comment.user.username}"></td>
                     <td th:text="${comment.content}"></td>
                     <td th:text="${comment.status ? 'approve' : 'not approve'}"></td>
-                    <td th:text="${comment.product.id}"></td>
+                    <td th:text="${comment.productDetail.product.productName}"></td>
                     <td th:text="${comment.created_at}"></td>
                     <td><a th:href="@{'/comment/update/'+ ${comment.id}}" class="btn btn-danger"
                         th:text="${comment.status ? 'not approve' : 'approve'}"></a></td>
